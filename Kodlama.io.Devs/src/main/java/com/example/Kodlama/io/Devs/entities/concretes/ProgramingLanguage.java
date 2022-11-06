@@ -1,29 +1,31 @@
 package com.example.Kodlama.io.Devs.entities.concretes;
 
+
+
+
+import lombok.*;
+import javax.persistence.*;
+import java.util.List;
+
+
+@Table(name = "programingLanguages")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
 public class ProgramingLanguage {
-    int id;
-    String name;
 
-    public ProgramingLanguage(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-    public ProgramingLanguage() {}
+    @Column(name = "name")
+    private String name;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy="programingLanguage")
+    private List<SubTechnologyLanguage> subTechnologyLanguages;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
